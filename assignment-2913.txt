@@ -4,7 +4,17 @@
 	42 - Number
 	09/02/1945 - Date
 	98.7 - Float 
-	$15.99 - string
+	$15.99 - Decimal - Usage: Decimal(15,99). The '$' dollar sign is throwing me off. So I had to run an implementation to walk myself through it.
+
+	SELECT date, '$' + CAST(amount AS VARCHAR(15)) as amount
+	FROM payments;
+
+	Result: 
+
+	data 			amount
+	2016-05-01  	$1500.00
+
+	That said, you can use `money` and `smallmoney`. But from what I read that means potential rounding errors. (Source: https://www.red-gate.com/hub/product-learning/sql-prompt/avoid-use-money-smallmoney-datatypes)
 
 2. Explain when a database would be used. Explain when a text file would be used.
 	- A database would be used if there will be multiple users accessing the information at the same time. 
@@ -76,6 +86,8 @@ SELECT email, signup
 FROM users
 WHERE name = 'DeAndre Data';
 
+email               signup
+datad@comcast.net   2001-01-20
 
 The user ID for the user with email 'aleesia.algorithm@uw.edu'.
 
@@ -83,6 +95,8 @@ SELECT userid
 FROM users
 WHERE email = 'aleesia.algorithm.uq.edu';
 
+userid
+1
 
 
 All the columns for the user ID equal to 4.
@@ -90,3 +104,6 @@ All the columns for the user ID equal to 4.
 SELECT *
 FROM users
 WHERE userid = 4;
+
+userid 	name 			email				signup
+4		Brandy Boolean	bboolean@nasa.gov	1999-10-15
